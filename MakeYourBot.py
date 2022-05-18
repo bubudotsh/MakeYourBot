@@ -1,0 +1,31 @@
+import shutil
+
+
+def prefix_engine(botname, botprefix):
+    reading_file = open("botgen/" + botname + "/config.json", "r")
+    new_file_content = ""
+
+    for line in reading_file:
+        stripped_line = line.strip()
+        new_line = stripped_line.replace("prf", botprefix)
+        new_file_content += new_line +"\n"
+
+    reading_file.close()
+    writing_file = open("botgen/" + botname + "/config.json", "w")
+    writing_file.write(new_file_content)
+    writing_file.close()
+
+
+def file_copy(botname):
+    source_dir = r"template"
+    destination_dir = r"botgen/" + botname
+    shutil.copytree(source_dir, destination_dir)
+
+
+print("MakeYourBot\n")
+print("name of yout bot :")
+botname = input()
+file_copy(botname)
+print("prefix of your bot :")
+botprefix = input()
+prefix_engine(botname, botprefix)
