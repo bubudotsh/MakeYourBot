@@ -1,4 +1,3 @@
-from curses import echo
 import shutil
 import platform
 
