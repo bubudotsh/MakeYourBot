@@ -1,7 +1,24 @@
+from secrets import choice
 import shutil
 import os
 import re
 import platform
+import time
+
+def title () :
+    menutext = """
+ __  __       _     __     __              ____        _ 
+|  \/  |     | |    \ \   / /             |  _ \      | |  
+| \  / | __ _| | ____\ \_/ /__  _   _ _ __| |_) | ___ | |_ 
+| |\/| |/ _` | |/ / _ \   / _ \| | | | '__|  _ < / _ \| __|
+| |  | | (_| |   <  __/| | (_) | |_| | |  | |_) | (_) | |_ 
+|_|  |_|\__,_|_|\_\___||_|\___/ \__,_|_|  |____/ \___/ \__|                                                  
+    """
+    print(menutext  + "\n")
+
+
+
+############ Make bot function ############
 
 def prefix_engine(botname, botprefix):
     reading_file = open("botgen/" + botname + "/config.json", "r")
@@ -45,9 +62,7 @@ def choose_cmds (types, botname):
         print(str((y + 1)) + " - " + content_no)
         y += 1
 
-    print("\ntype number of commands you want to (ex : 1,4,6)")
-    print("press enter to next step")
-    cmds = input()
+    cmds = input("\ntype number or enter to next (ex : 1,4,6) : ")
 
     nbvir = cmds.count(',')
     nblen = len(cmds) - nbvir
@@ -74,47 +89,81 @@ def recap (botname, botprefix):
     print("so, your bot is available in 'botgen' directory")
 
 def make_bot ():
+    clear()
+    title()
     print("name of yout bot :")
     botname = input()
     file_copy(botname)
+    clear()
+    title()
     print("prefix of your bot :")
     botprefix = input()
     prefix_engine(botname, botprefix)
+    print("\nyour bot " + botname + " was create ! Now choose your commande\n")
+    time.sleep(1.5)
     clear()
-    print("your bot " + botname + " was create ! Now choose your commande\n")
+    title()
     a = 'fun'
     b = 'modo'
     c = 'info'
     d = 'bot_info'
     choose_cmds(a, botname)
     clear()
+    title()
     choose_cmds(b, botname)
     clear()
+    title()
     choose_cmds(c, botname)
     clear()
+    title()
     choose_cmds(d, botname)
     clear()
+    title()
     recap(botname, botprefix)
 
 
+
+
+
+
+
+############ how lunch function ############
+
+def bot_start ():
+    clear()
+    title()
+    print("- Install NodeJs and npm")
+    print("- Create token discord bot and replace 'lpm' with token in botconfig.json")
+    print("- open terminal in your bot directory and type : npm start inde.js")
+    bot_start_choice = input("\nenter 1 to back to menu : ")
+    if bot_start_choice == '1':
+        menu()
+     
+
+
+
+
+
+
+
+############ menu function ############
+
 def menu ():
     clear()
-    menutext = """
- __  __       _     __     __              ____        _ 
-|  \/  |     | |    \ \   / /             |  _ \      | |  
-| \  / | __ _| | ____\ \_/ /__  _   _ _ __| |_) | ___ | |_ 
-| |\/| |/ _` | |/ / _ \   / _ \| | | | '__|  _ < / _ \| __|
-| |  | | (_| |   <  __/| | (_) | |_| | |  | |_) | (_) | |_ 
-|_|  |_|\__,_|_|\_\___||_|\___/ \__,_|_|  |____/ \___/ \__|                                                  
-    """
-    print(menutext  + "\n")
+    title()
     print("1 - create a new bot")
     print("2 - how to lunch my bot ?")
-    print("3 - Make my command\n")
+    print("3 - quitte\n")
     menu_choice = input("choose number : ")
 
     if menu_choice == '1':
         make_bot()
         recap()
+    elif menu_choice == '2':
+        bot_start()
+    elif menu_choice == '3':
+        return
+    else:
+        menu()
 
 menu()
