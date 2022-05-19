@@ -31,7 +31,7 @@ def clear():
     else:
         os.system('clear')
 
-def choose_cmds (types):
+def choose_cmds (types, botname):
     i = 0
     y = 0
     file = open('cmd_' + types + '.txt')
@@ -59,7 +59,7 @@ def choose_cmds (types):
         shutil.copyfile("cmds/" + commande_name + ".js", "botgen/" + botname + "/commands/" + commande_name + ".js")
         i += 1
 
-def recap ():
+def recap (botname, botprefix):
     print("So config of your bot :\n")
     print("name : " + botname)
     print("prefix : " + botprefix + "\n")
@@ -73,27 +73,48 @@ def recap ():
 
     print("so, your bot is available in 'botgen' directory")
 
- 
-print("MakeYourBot\n")
+def make_bot ():
+    print("name of yout bot :")
+    botname = input()
+    file_copy(botname)
+    print("prefix of your bot :")
+    botprefix = input()
+    prefix_engine(botname, botprefix)
+    clear()
+    print("your bot " + botname + " was create ! Now choose your commande\n")
+    a = 'fun'
+    b = 'modo'
+    c = 'info'
+    d = 'bot_info'
+    choose_cmds(a, botname)
+    clear()
+    choose_cmds(b, botname)
+    clear()
+    choose_cmds(c, botname)
+    clear()
+    choose_cmds(d, botname)
+    clear()
+    recap(botname, botprefix)
 
-print("name of yout bot :")
-botname = input()
-file_copy(botname)
-print("prefix of your bot :")
-botprefix = input()
-prefix_engine(botname, botprefix)
-clear()
-print("your bot " + botname + " was create ! Now choose your commande\n")
-a = 'fun'
-b = 'modo'
-c = 'info'
-d = 'bot_info'
-choose_cmds(a)
-clear()
-choose_cmds(b)
-clear()
-choose_cmds(c)
-clear()
-choose_cmds(d)
-clear()
-recap()
+
+def menu ():
+    clear()
+    menutext = """
+ __  __       _     __     __              ____        _ 
+|  \/  |     | |    \ \   / /             |  _ \      | |  
+| \  / | __ _| | ____\ \_/ /__  _   _ _ __| |_) | ___ | |_ 
+| |\/| |/ _` | |/ / _ \   / _ \| | | | '__|  _ < / _ \| __|
+| |  | | (_| |   <  __/| | (_) | |_| | |  | |_) | (_) | |_ 
+|_|  |_|\__,_|_|\_\___||_|\___/ \__,_|_|  |____/ \___/ \__|                                                  
+    """
+    print(menutext  + "\n")
+    print("1 - create a new bot")
+    print("2 - how to lunch my bot ?")
+    print("3 - Make my command\n")
+    menu_choice = input("choose number : ")
+
+    if menu_choice == '1':
+        make_bot()
+        recap()
+
+menu()
