@@ -86,7 +86,12 @@ def recap (botname, botprefix):
             name_no = re.sub(".js", "", x)
             print(name_no)
 
-    print("so, your bot is available in 'yourbot' directory")
+    print("so, your bot is available in 'yourbot' directory\n")
+    ret = input("type 1 to bak to menu : ")
+    if ret == 1:
+        menu()
+    else:
+        menu()
 
 def make_bot ():
     clear()
@@ -120,6 +125,7 @@ def make_bot ():
     clear()
     title()
     recap(botname, botprefix)
+
 
 
 
