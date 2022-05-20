@@ -1,7 +1,0 @@
-covid19
-ping
-rolelist
-serverinfo
-userinfo
-weather
-where

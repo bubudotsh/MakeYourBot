@@ -1,3 +1,0 @@
-botinfo
-uptime
-pp
