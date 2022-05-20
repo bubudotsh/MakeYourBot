@@ -1,0 +1,8 @@
+addrole
+ban
+clearwarn
+kick
+removerole
+unban
+warn
+warnlevel

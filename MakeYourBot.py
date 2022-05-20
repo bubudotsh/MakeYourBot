@@ -21,7 +21,7 @@ def title () :
 ############ Make bot function ############
 
 def prefix_engine(botname, botprefix):
-    reading_file = open("botgen/" + botname + "/config.json", "r")
+    reading_file = open("yourbot/" + botname + "/config.json", "r")
     new_file_content = ""
 
     for line in reading_file:
@@ -30,14 +30,14 @@ def prefix_engine(botname, botprefix):
         new_file_content += new_line +"\n"
 
     reading_file.close()
-    writing_file = open("botgen/" + botname + "/config.json", "w")
+    writing_file = open("yourbot/" + botname + "/config.json", "w")
     writing_file.write(new_file_content)
     writing_file.close()
 
 
 def file_copy(botname):
-    source_dir = r"template"
-    destination_dir = r"botgen/" + botname
+    source_dir = r"data/template"
+    destination_dir = r"yourbot/" + botname
     shutil.copytree(source_dir, destination_dir)
 
 def clear():
@@ -71,7 +71,7 @@ def choose_cmds (types, botname):
     while not (i == nblen):
         commande_name = content[int(cmd[i]) - 1]
         commande_name = re.sub("\n", "", commande_name)
-        shutil.copyfile("cmds/" + commande_name + ".js", "botgen/" + botname + "/commands/" + commande_name + ".js")
+        shutil.copyfile("data/cmds/" + commande_name + ".js", "yourbot/" + botname + "/commands/" + commande_name + ".js")
         i += 1
 
 def recap (botname, botprefix):
@@ -80,13 +80,13 @@ def recap (botname, botprefix):
     print("prefix : " + botprefix + "\n")
     print("your commands :\n")
 
-    recap_dir = "botgen/" + botname + "/commands"
+    recap_dir = "yourbot/" + botname + "/commands"
     for x in os.listdir(recap_dir):
         if x.endswith(".js"):
             name_no = re.sub(".js", "", x)
             print(name_no)
 
-    print("so, your bot is available in 'botgen' directory")
+    print("so, your bot is available in 'yourbot' directory")
 
 def make_bot ():
     clear()
