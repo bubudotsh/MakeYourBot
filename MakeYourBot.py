@@ -51,7 +51,7 @@ def clear():
 def choose_cmds (types, botname):
     i = 0
     y = 0
-    file = open('cmd_' + types + '.txt')
+    file = open('data/cmd_' + types + '.txt')
     content = file.readlines()
     len_file = len(content)
 
